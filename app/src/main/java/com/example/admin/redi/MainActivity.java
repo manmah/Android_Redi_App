@@ -14,7 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    public static View.OnClickListener myOnClickListener;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -54,24 +58,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("users");
         myRef.setValue("Hello, World!");
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("message", "Value is: " + value);
-            }
+  //      DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        myRef.child("name").setValue("Manoo");
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("message", "Failed to read value.", error.toException());
-            }
-        });
+
 
         getSupportFragmentManager()
                 .beginTransaction()
