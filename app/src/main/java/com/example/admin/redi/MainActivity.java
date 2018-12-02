@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Share Love, Share Peace , Be ReDI", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "Share Love, Share Peace , Be ReDI\uD83D\uDC96", Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_profile) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.main_container, new HomeFragment())
+                    .replace(R.id.main_container, new ProfileFragment())
                     .addToBackStack("Home")
                     .commit();
         } else if (id == R.id.nav_gallery) {
