@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
 
-    String[] strings = {"1", "2", "3", "4", "5", "6", "7"};
     private MyOnClickListener myOnClickListener;
 
     public GalleryFragment() {}
@@ -26,7 +25,7 @@ public class GalleryFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
-    private static ArrayList<Integer> removedItems;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
    /*     RecyclerView rv = new RecyclerView(getContext());
@@ -44,16 +43,13 @@ public class GalleryFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         data = new ArrayList<DataModel>();
-        for (int i = 0; i < MyData.nameArray.length; i++) {
+        for (int i = 0; i < MyData.drawableArray.length; i++) {
             data.add(new DataModel(
                     MyData.nameArray[i],
-                    MyData.versionArray[i],
-                    MyData.id_[i],
                     MyData.drawableArray[i]
             ));
         }
 
-        removedItems = new ArrayList<Integer>();
 
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
@@ -70,63 +66,11 @@ public class GalleryFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            removeItem(v);
+
         }
 
-        private void removeItem(View v) {
-            int selectedItemPosition = recyclerView.getChildPosition(v);
-            RecyclerView.ViewHolder viewHolder
-                    = recyclerView.findViewHolderForPosition(selectedItemPosition);
-            TextView textViewName
-                    = (TextView) viewHolder.itemView.findViewById(R.id.textViewName);
-            String selectedName = (String) textViewName.getText();
-            int selectedItemId = -1;
-            for (int i = 0; i < MyData.nameArray.length; i++) {
-                if (selectedName.equals(MyData.nameArray[i])) {
-                    selectedItemId = MyData.id_[i];
-                }
-            }
-            removedItems.add(selectedItemId);
-            data.remove(selectedItemPosition);
-            adapter.notifyItemRemoved(selectedItemPosition);
-        }
+
     }
 
-    /**
-     * A Simple Adapter for the RecyclerView
-     */
-    public class SimpleRVAdapter extends RecyclerView.Adapter<SimpleViewHolder> {
-        private String[] dataSource;
-        public SimpleRVAdapter(String[] dataArgs){
-            dataSource = dataArgs;
-        }
 
-        @Override
-        public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = new TextView(parent.getContext());
-            SimpleViewHolder viewHolder = new SimpleViewHolder(view);
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(SimpleViewHolder holder, int position) {
-            holder.textView.setText(dataSource[position]);
-        }
-
-        @Override
-        public int getItemCount() {
-            return dataSource.length;
-        }
-    }
-
-    /**
-     * A Simple ViewHolder for the RecyclerView
-     */
-    public static class SimpleViewHolder extends RecyclerView.ViewHolder{
-        public TextView textView;
-        public SimpleViewHolder(View itemView) {
-            super(itemView);
-            textView = (TextView) itemView;
-        }
-    }
 }

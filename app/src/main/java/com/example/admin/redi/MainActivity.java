@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Welcome To Redi App, For more information press on the Menu icon", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "Share Love, Share Peace , Be ReDI", Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -109,7 +109,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            // Handle the camera action
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, new HomeFragment())
+                    .addToBackStack("Home")
+                    .commit();
         } else if (id == R.id.nav_gallery) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -117,12 +121,33 @@ public class MainActivity extends AppCompatActivity
                     .addToBackStack("Gallery")
                     .commit();
         } else if (id == R.id.nav_events) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, new EventsFragment())
+                    .addToBackStack("News")
+                    .commit();
 
         } else if (id == R.id.nav_news) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, new NewsFragment())
+                    .addToBackStack("News")
+                    .commit();
 
         } else if (id == R.id.nav_about) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, new AboutFragment())
+                    .addToBackStack("News")
+                    .commit();
 
         } else if (id == R.id.nav_contact) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_container, new ContactFragment()
+                    )
+                    .addToBackStack("News")
+                    .commit();
 
         }
 

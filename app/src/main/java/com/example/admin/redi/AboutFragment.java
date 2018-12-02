@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-public class HomeFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
     private WebView webViewRedi;
 
@@ -20,7 +20,7 @@ public class HomeFragment extends Fragment {
 
         webViewRedi = view.findViewById(R.id.webViewRedi);
         webViewRedi.getSettings().setJavaScriptEnabled(true);
-        webViewRedi.loadUrl("https://www.redi-school.org/berlin");
+        webViewRedi.loadUrl("https://www.redi-school.org/mission");
 
         return view;
     }
